@@ -1,1 +1,3 @@
-export default function({ $axios, app: { $cookies } }) {}
+export default function({ $axios, app: { $cookies } }) {
+  $axios.defaults.withCredentials = true
+}

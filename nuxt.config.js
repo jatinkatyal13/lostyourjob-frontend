@@ -1,6 +1,7 @@
+import config from './config'
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -29,7 +30,8 @@ export default {
   */
   plugins: [
     '~/plugins/styles',
-    '~/plugins/globalComponents'
+    '~/plugins/globalComponents',
+    '~/plugins/axios'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -51,7 +53,13 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {
+  axios: config.axios,
+  /*
+  ** Middlewares
+  **
+  */
+  router: {
+    middleware: ['auth']
   },
   /*
   ** Build configuration
