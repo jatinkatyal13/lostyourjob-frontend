@@ -6,7 +6,7 @@
           <h3 class="mb-0">Edit profile </h3>
         </div>
         <div class="col-4 text-right">
-          <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+          <a href="#!" class="btn btn-sm btn-primary">Save</a>
         </div>
       </div>
     </div>
@@ -40,3 +40,14 @@
     </div>
   </div>  
 </template>
+<script>
+export default {
+  tasks(t) {
+    return {
+      fetchProfileTask: t(function *() {
+
+      })
+    }
+  }
+}
+</script>

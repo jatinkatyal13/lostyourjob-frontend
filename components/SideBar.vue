@@ -13,10 +13,10 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="dashboard.html">
+              <nuxt-link class="nav-link active" :to="this.$store.state.session.user.role === 'seeker' ? '/seeker' : '/referrer'">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
-              </a>
+              </nuxt-link>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="tables.html">

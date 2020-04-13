@@ -16,7 +16,8 @@
     "axios": "^0.19.2",
     "bootstrap": "4.3.1",
     "bootstrap-vue": "^2.11.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vuency": "^0.1.7"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
