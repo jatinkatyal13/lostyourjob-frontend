@@ -23,16 +23,10 @@
               </div>
             </div>
             <div class="col-12">
-              <div class="form-group">
-                <label class="form-control-label">Resume</label>
-                <input type="file" class="form-control">
-              </div>
+              <FileUploader label="Resume" />
             </div>
             <div class="col-12">
-              <div class="form-group">
-                <label class="form-control-label">Offer Letter</label>
-                <input type="file" class="form-control">
-              </div>
+              <FileUploader label="Offer Letter" class="mt-4" />
             </div>
           </div>
         </div>
@@ -41,7 +35,12 @@
   </div>  
 </template>
 <script>
+import FileUploader from '~/components/common/FileUploader'
+
 export default {
+  components: {
+    FileUploader
+  },
   tasks(t) {
     return {
       fetchProfileTask: t(function *() {

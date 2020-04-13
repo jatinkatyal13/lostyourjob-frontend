@@ -24,6 +24,7 @@ import SideBar from '~/components/SideBar'
 import Footer from '~/components/Footer'
 
 export default {
+  middleware: 'isAuthenticated',
   components: {
     NavBar,
     SideBar,

@@ -46,7 +46,7 @@
                 </div>
               </div>
             </a>
-            <div class="dropdown-menu  dropdown-menu-right ">
+            <div class="dropdown-menu  dropdown-menu-right">
               <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
@@ -59,7 +59,7 @@
                 <span>Support</span>
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#!" class="dropdown-item">
+              <a href="#" class="dropdown-item" v-on:click="logout()">
                 <i class="ni ni-user-run"></i>
                 <span>Logout</span>
               </a>
@@ -72,12 +72,19 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data() {
     return {
       profilePhoto: this.$store.state.session.user.photo,
       fullName: this.$store.getters['session/fullName']
     }
+  },
+  methods: {
+    ...mapActions({
+      logout: 'session/logoutUser'
+    })
   }
 }
 </script>

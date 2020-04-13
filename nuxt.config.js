@@ -31,7 +31,8 @@ export default {
   plugins: [
     '~/plugins/styles',
     '~/plugins/globalComponents',
-    '~/plugins/axios'
+    '~/plugins/axios',
+    '~/plugins/vuency'
   ],
   /*
   ** Nuxt.js dev-modules

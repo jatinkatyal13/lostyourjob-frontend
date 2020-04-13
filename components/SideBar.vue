@@ -1,5 +1,8 @@
 <template>
-  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <nav 
+    class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" 
+    id="sidenav-main" 
+    v-if="this.$store.state.session.user">
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
