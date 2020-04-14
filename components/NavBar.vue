@@ -36,7 +36,11 @@
         </ul>
         <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
           <li class="nav-item dropdown">
-            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a 
+              class="nav-link pr-0" 
+              @click="toggleProfilePopUp"
+              v-on-clickaway="closeProfilePopUp"
+              href="#">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
                   <img alt="Image placeholder" :src="profilePhoto">
@@ -46,7 +50,7 @@
                 </div>
               </div>
             </a>
-            <div class="dropdown-menu  dropdown-menu-right">
+            <div :class="`dropdown-menu  dropdown-menu-right ${showProfilePopUp ? 'show' : ''}`">
               <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
@@ -73,10 +77,15 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { directive as onClickaway } from 'vue-clickaway';
 
 export default {
+  directives: {
+    onClickaway
+  },
   data() {
     return {
+      showProfilePopUp: false,
       profilePhoto: this.$store.state.session.user.photo,
       fullName: this.$store.getters['session/fullName']
     }
@@ -84,7 +93,13 @@ export default {
   methods: {
     ...mapActions({
       logout: 'session/logoutUser'
-    })
+    }),
+    closeProfilePopUp() {
+      this.showProfilePopUp = false
+    },
+    toggleProfilePopUp() {
+      this.showProfilePopUp = !this.showProfilePopUp
+    }
   }
 }
 </script>

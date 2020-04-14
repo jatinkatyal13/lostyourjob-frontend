@@ -17,6 +17,7 @@
     "bootstrap": "4.3.1",
     "bootstrap-vue": "^2.11.0",
     "nuxt": "^2.0.0",
+    "vue-clickaway": "^2.2.2",
     "vuency": "^0.1.7"
   },
   "devDependencies": {
