@@ -71,7 +71,7 @@ export default {
         return this.profile?.summary
       },
       set(val) {
-        this.$store.commit('setProfile', { summary: val })
+        this.setProfile({ summary: val })
       }
     }
   },
@@ -87,16 +87,10 @@ export default {
   },
   methods: {
     onAfterResumeUpload(data) {
-      this.setProfile({
-        ...this.profile,
-        resume: data.url
-      })
+      this.setProfile({ resume: data.url })
     },
     onAfterOfferLetterUpload(data) {
-      this.setProfile({
-        ...this.profile,
-        offer_letter: data.url
-      })
+      this.setProfile({ offer_letter: data.url })
     },
     ...mapMutations({
       setProfile: 'profile/setProfile'

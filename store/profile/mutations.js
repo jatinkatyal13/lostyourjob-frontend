@@ -1,7 +1,7 @@
 export default {
   setProfile(state, profile) {
     state.profile = {
-      ...state,
+      ...state.profile,
       ...profile
     }
   }
