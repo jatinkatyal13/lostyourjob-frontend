@@ -6,7 +6,7 @@ export default {
   },
   async updateCurrentUserProfile({ commit }, newProfile) {
     const profile = await this.$axios.post('/api/seekers/myProfile/', newProfile)
-    commit('setProfile', profile)
+    commit('setProfile', profile.data)
     return profile
   }
 }

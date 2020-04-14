@@ -18,55 +18,42 @@
     </div>
     <VAsync :task="fetchProfileTask">
       <div class="card-body">
-        <form>
-          <!-- Description -->
-          <h6 class="heading-small text-muted mb-4">About me</h6>
-          <div class="pl-lg-4">
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <label class="form-control-label">About Me</label>
-                  <textarea rows="4" class="form-control" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
-                </div>
-              </div>
-              <div class="col-12">
-                <div v-if="profile && profile.resume">
-                  <span>
-                    <a :href="profile.resume" target="_blank">
-                      Link
-                    </a>
-                  </span>
-                </div>
-                <div v-else>
-                  <FileUploader 
-                    label="Resume" 
-                    :onAfterUpload="onAfterResumeUpload" />
-                </div>
-              </div>
-              <div class="col-12">
-                <div v-if="profile && profile.offer_letter">
-                  <span>
-                    <a :href="profile.offer_letter" target="_blank">
-                      Link
-                    </a>
-                  </span>
-                </div>
-                <div v-else>
-                  <FileUploader 
-                    label="Offer Letter"
-                    :onAfterUpload="onAfterOfferLetterUpload"
-                    class="mt-4" />
-                </div>
+        <!-- Description -->
+        <h6 class="heading-small text-muted mb-4">About me</h6>
+        <div class="pl-lg-4">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-control-label">About Me</label>
+                <textarea 
+                  rows="4" 
+                  class="form-control" 
+                  placeholder="A few words about you ..."
+                  v-model="summary">
+                </textarea>
               </div>
             </div>
+            <div class="col-12">
+              <FileUploader 
+                label="Resume" 
+                :url="profile && profile.resume"
+                :onAfterUpload="onAfterResumeUpload" />
+            </div>
+            <div class="col-12">
+              <FileUploader 
+                label="Offer Letter"
+                :url="profile && profile.offer_letter"
+                :onAfterUpload="onAfterOfferLetterUpload"
+                class="mt-4" />
+            </div>
           </div>
-        </form>
+        </div>
       </div>
     </VAsync>
   </div>  
 </template>
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import FileUploader from '~/components/common/FileUploader'
 import VAsync from '~/components/common/VAsync'
 
@@ -78,6 +65,14 @@ export default {
   computed: {
     profile() {
       return this.$store.state.profile.profile
+    },
+    summary: {
+      get() {
+        return this.profile?.summary
+      },
+      set(val) {
+        this.$store.commit('setProfile', { summary: val })
+      }
     }
   },
   tasks(t) {

@@ -1,7 +1,21 @@
 <template>
   <div>
-    <label class="form-control-label" for="customFileLang">{{ label }}</label>
-    <div class="row align-items-center">
+    <label class="form-control-label">{{ label }}</label>
+    <span v-if="url">
+      <a 
+        :href="url" 
+        target="_blank" 
+        class="btn btn-sm btn-success">
+        View File
+      </a>
+      <button 
+        type="button"
+        class="btn btn-sm btn-info"
+        v-on:click="toggleEditingMode()">
+        Edit File
+      </button>
+    </span>
+    <div class="row align-items-center pt-4" v-if="editing || !url">
       <div class="col-md-10">
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="customFileLang" ref="file" v-on:change="fileSelected()">
@@ -40,11 +54,13 @@
 export default {
   props: {
     label: String,
-    onAfterUpload: Function
+    onAfterUpload: Function,
+    url: String
   },
   data: () => ({
     file: null,
-    uploadPercent: null
+    uploadPercent: null,
+    editing: false
   }),
   tasks(t) {
     return {
@@ -71,6 +87,9 @@ export default {
     },
     fileSelected() {
       this.file = this.$refs.file.files[0];
+    },
+    toggleEditingMode() {
+      this.editing = !this.editing
     }
   }
 }
