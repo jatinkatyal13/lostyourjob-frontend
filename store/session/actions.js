@@ -8,7 +8,7 @@ export default {
     }
   },
   async logoutUser({ commit }) {
-    await this.$axios.post('/auth/logout/').catch(console.log)
+    await this.$axios.post('/auth/logout/')
     commit('setUser', null)
   }
 }

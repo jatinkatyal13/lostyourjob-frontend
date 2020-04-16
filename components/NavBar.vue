@@ -76,24 +76,32 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import { directive as onClickaway } from 'vue-clickaway';
 
 export default {
   directives: {
     onClickaway
   },
-  data() {
-    return {
-      showProfilePopUp: false,
-      profilePhoto: this.$store.state.session.user.photo,
-      fullName: this.$store.getters['session/fullName']
+  computed: {
+    profilePhoto() {
+      return this.$store.state.session.user?.photo
+    },
+    fullName() {
+      return this.$store.getters['session/fullName']
     }
   },
+  data: () => ({
+    showProfilePopUp: false
+  }),
   methods: {
-    ...mapActions({
-      logout: 'session/logoutUser'
-    }),
+    ...mapActions([
+      'session/logoutUser'
+    ]),
+    async logout() {
+      await this['session/logoutUser']()
+      this.$router.replace('/login')
+    },
     closeProfilePopUp() {
       this.showProfilePopUp = false
     },

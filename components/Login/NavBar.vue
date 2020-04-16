@@ -50,15 +50,35 @@
             </a>
           </li>
           <li class="nav-item d-none d-lg-block ml-lg-4">
-            <a href="https://www.creative-tim.com/product/argon-dashboard-pro?ref=ad_upgrade_pro" target="_blank" class="btn btn-neutral btn-icon">
+            <nuxt-link 
+              :to="otherRoleRoute.link" 
+              class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon">
                 <i class="fas fa-shopping-cart mr-2"></i>
               </span>
-              <span class="nav-link-inner--text">Have Referrals?</span>
-            </a>
+              <span class="nav-link-inner--text">{{ otherRoleRoute.text }}</span>
+            </nuxt-link>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 </template>
+<script>
+export default {
+  computed: {
+    otherRoleRoute() {
+      if (this.$route.name === 'login-referrer') {
+        return {
+          link: '/login',
+          text: 'Looking for Referrals?'
+        }  
+      }
+      return {
+        link: '/login/referrer',
+        text: 'Have Referrals?'
+      }
+    }
+  }
+}
+</script>
